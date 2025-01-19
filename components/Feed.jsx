@@ -2,8 +2,73 @@
 
 import { useState, useEffect } from "react";
 
+import PromptCard from "./PromptCard";
+
+const PromptCardList = ({ data, handleTagClick }) => {
+  return (
+    <div className="mt-16 grid w-[70vw] grid-cols-3 place-items-center gap-5">
+      {data.map((item) => (
+        <PromptCard
+          key={item._id}
+          post={item}
+          handleTagClick={handleTagClick}
+        />
+      ))}
+    </div>
+  );
+};
+
 const Feed = () => {
-  return <div></div>;
+  const [searchText, setSearchText] = useState("");
+  const [posts, setPosts] = useState([]);
+  const [initial, setInital] = useState([]);
+
+  useEffect(() => {
+    const fetchPrompts = async () => {
+      const response = await fetch("/api/prompt");
+      const data = await response.json();
+      setInital(data);
+      setPosts(data);
+    };
+
+    fetchPrompts();
+  }, []);
+
+  return (
+    <section className="feed">
+      <form
+        className="relative w-full flex-center"
+        onSubmit={(e) => {
+          e.preventDefault();
+          setPosts(
+            [...initial].filter((post) => searchText.includes(post.tag))
+          );
+        }}
+      >
+        <input
+          type="text"
+          placeholder="search for a tag or a username"
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
+          className="w-full py-3 px-6 rounded-full outline-none shadow-xl text-gray-500 text-md border-2 border-blue-600"
+        />
+      </form>
+      <button
+        onClick={() => setPosts(initial)}
+        className="absolute right-32 top-[450px] bg-black text-white p-2 px-3 active:bg-gray-700 rounded-full "
+      >
+        Show All
+      </button>
+      <PromptCardList
+        data={posts}
+        handleTagClick={(tag) => {
+          setPosts((prevPosts) => {
+            setPosts(prevPosts.filter((post) => post.tag == tag));
+          });
+        }}
+      />
+    </section>
+  );
 };
 
 export default Feed;

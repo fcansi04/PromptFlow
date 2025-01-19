@@ -1,8 +1,12 @@
 "use client";
 
+//Link and Image must be imported from next
 import Link from "@node_modules/next/link";
 import Image from "@node_modules/next/image";
+
+//useRouter is for routing dynamicly. router=useRouter(); router.push("/")
 import { useRouter } from "@node_modules/next/navigation";
+
 import { useState, useEffect } from "react";
 
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
@@ -13,6 +17,7 @@ const Nav = () => {
   const { data: session } = useSession();
   const [providers, setProviders] = useState(null);
 
+  //mobile nav button. when you click it should show the navigations togglingdown.
   const [toggleDroppDown, setToggleDropDown] = useState(false);
 
   useEffect(() => {
