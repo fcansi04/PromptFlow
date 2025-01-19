@@ -1,6 +1,6 @@
 import { Schema, models, model } from "mongoose";
 
-const PromptScema = new Schema({
+const PromptSchema = new Schema({
   creator: {
     type: Schema.Types.ObjectId,
     ref: "User",
@@ -16,6 +16,6 @@ const PromptScema = new Schema({
   },
 });
 
-const Prompt = models.prompt || model("Prompt", PromptScema);
+const Prompt = models.Prompt || model("Prompt", PromptSchema);
 
 export default Prompt;
