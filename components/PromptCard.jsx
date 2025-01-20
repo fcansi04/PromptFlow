@@ -20,8 +20,8 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
   };
 
   return (
-    <div className="relative flex flex-col xl:gap-4 sm:gap-1 border-2 w-80 min-h-80 p-5 pt-3 rounded-xl">
-      <div className=" flex gap-4 items-end ">
+    <div className="relative flex flex-col w-full bg-white sm:gap-1 border-2 w-100 min-h-80 p-5 pt-3 rounded-xl">
+      <div className=" flex gap-4 items-end mb-6">
         <Image
           src={post.creator?.image}
           width={45}

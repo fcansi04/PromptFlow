@@ -6,7 +6,7 @@ import PromptCard from "./PromptCard";
 
 const PromptCardList = ({ data, handleTagClick }) => {
   return (
-    <div className="mt-16 grid w-screen xl:w-[80vw] max-sm:grid-1 sm:grid-cols-2  lg:grid-cols-3 place-items-center gap-5">
+    <div className="mt-16 grid w-screen px-8 lg:px-10 xl:px-20 max-sm:grid-1 md:grid-cols-2  lg:grid-cols-3 place-items-center gap-5">
       {data.map((item) => (
         <PromptCard
           key={item._id}
@@ -56,7 +56,7 @@ const Feed = () => {
       <div className="relative">
         <button
           onClick={() => setPosts(initial)}
-          className="absolute right-12 top-[10px] bg-black text-white p-2 px-3 active:bg-gray-700 rounded-full "
+          className="absolute right-20 top-[10px] bg-black text-white p-2 px-3 active:bg-gray-700 rounded-full "
         >
           Show All
         </button>
