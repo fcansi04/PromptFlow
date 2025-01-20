@@ -14,7 +14,7 @@ import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 const Nav = () => {
   const router = useRouter();
 
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   const [providers, setProviders] = useState(null);
 
   //mobile nav button. when you click it should show the navigations togglingdown.
@@ -35,16 +35,19 @@ const Nav = () => {
         <Image
           width={30}
           height={30}
+          priority
           alt="PromptFlow-logo"
           src="/assets/images/world-logo.png"
-          className="bg-white"
+          className="bg-white h-auto"
         />
         <h2 className="max-sm:hidden text-xl font-bold font-satoshi">
           PromptFlow
         </h2>
       </Link>
       <div className="sm:flex hidden">
-        {session?.user ? (
+        {status === "loading" ? (
+          <div className="font-bold">Loading...</div>
+        ) : session?.user ? (
           <div className="flex gap-3 md:gap-5">
             <Link href="/create-prompt" className="black_btn">
               Create Post
