@@ -17,12 +17,12 @@ export const GET = async (request, context) => {
   }
 };
 
-export const PATCH = async (request, { params }) => {
+export const PATCH = async (request, context) => {
   const { prompt, tag } = await request.json();
   try {
     await connectToDB();
-
-    const existingPrompt = await Prompt.findById(params.id);
+    const { id } = await context.params;
+    const existingPrompt = await Prompt.findById(id);
 
     if (!existingPrompt)
       return new Response("prompt not found", { status: 404 });
@@ -38,13 +38,15 @@ export const PATCH = async (request, { params }) => {
   }
 };
 
-export const DELETE = async (request, { params }) => {
+export const DELETE = async (request, context) => {
   try {
     await connectToDB();
-    await Prompt.findByIdAndRemove(params.id);
+    const { id } = await context.params;
+    await Prompt.findByIdAndDelete(id);
 
-    return new Response("prompt deleted succesfully", { staus: 200 });
+    return new Response("prompt deleted succesfully", { status: 200 });
   } catch (error) {
+    console.log("delete error:", error);
     return new Response("prompt deleted failed", { status: 500 });
   }
 };
