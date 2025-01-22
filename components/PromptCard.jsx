@@ -55,7 +55,7 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
         className="font-satoshi text-gray-600 cursor-pointer"
         onClick={() => handleTagClick && handleTagClick(post.tag)}
       >
-        {post.tag}
+        #{post.tag}
       </p>
 
       {session?.user.id === post.creator._id && pathName === "/profile" && (
