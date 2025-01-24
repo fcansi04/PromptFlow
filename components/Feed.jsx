@@ -52,6 +52,10 @@ const Feed = () => {
           onChange={(e) => setSearchText(e.target.value)}
           className="w-full py-3 px-6 rounded-full outline-none shadow-xl text-gray-500 text-md border-2 border-blue-600"
         />
+
+        <button className="absolute right-[13px]">
+          <span className="material-symbols-outlined">search</span>
+        </button>
       </form>
       <div className="relative">
         <button
