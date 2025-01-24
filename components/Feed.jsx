@@ -41,7 +41,9 @@ const Feed = () => {
         onSubmit={(e) => {
           e.preventDefault();
           setPosts(
-            [...initial].filter((post) => searchText.includes(post.tag))
+            [...initial].filter((post) =>
+              searchText.toLowerCase().includes(post.tag.toLowerCase())
+            )
           );
         }}
       >
