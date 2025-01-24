@@ -42,7 +42,7 @@ const Feed = () => {
           e.preventDefault();
           setPosts(
             [...initial].filter((post) =>
-              searchText.toLowerCase().includes(post.tag.toLowerCase())
+              post.tag.toLowerCase().includes(searchText.toLowerCase())
             )
           );
         }}
