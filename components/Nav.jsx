@@ -54,9 +54,10 @@ const Nav = () => {
             </Link>
             <button
               type="button"
-              onClick={() => {
-                signOut();
+              onClick={async () => {
+                await signOut({ redirect: false });
                 router.push("/");
+                router.refresh();
               }}
               className="outline_btn"
             >
@@ -122,7 +123,10 @@ const Nav = () => {
                 </Link>
                 <button
                   type="button"
-                  onClick={signOut}
+                  onClick={async () => {
+                    await signOut();
+                    router.push("/");
+                  }}
                   className="mt-5 w-full black_btn"
                 >
                   Sign Out
