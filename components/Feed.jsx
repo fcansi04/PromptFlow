@@ -51,6 +51,7 @@ const Feed = () => {
           type="text"
           placeholder="search for a tag or a username"
           value={searchText}
+          enterKeyHint="go"
           onChange={(e) => setSearchText(e.target.value)}
           className="w-full py-3 px-6 rounded-full outline-none shadow-xl text-gray-500 text-md border-2 border-blue-600"
         />
